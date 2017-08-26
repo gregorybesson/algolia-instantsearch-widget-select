@@ -1,8 +1,11 @@
-# algolia-instantsearch-widget-select
-An Algolia select widget to represent an attribute as a dropdown list
+# algolia-instantsearch-widgets
+Some custom widgets to enhance Algolia UI
 
+## algolia-instantsearch-select.js
+### Introduction
+An Algolia select widget to represent an attribute as a dropdown list. No dependency
 
-# usage
+### usage
 
 ```
 var search = instantsearch({
@@ -16,6 +19,26 @@ search.addWidget(
     container: '#select',
     attributeName: 'yourAlgoliaAttributeName',
     title: 'titleForYourSelect'
+  })
+);
+```
+
+## algolia-instantsearch-googlemaps.js
+### Introduction
+An Algolia googlemaps widget. You'll need to add `<script src="https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxx"></script>` in your page. Furthermore, your algolia hits must contain a _geoloc object.
+
+### usage
+
+```
+var search = instantsearch({
+    appId: 'XXXXXXXXXXX',
+    apiKey: 'YYYYYYYYYY',
+    indexName: 'youIndexName'
+});
+
+search.addWidget(
+  instantsearch.widgets.mapWidget({
+    container: '#map'
   })
 );
 ```
