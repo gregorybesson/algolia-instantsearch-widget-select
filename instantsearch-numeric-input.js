@@ -8,20 +8,22 @@ instantsearch.widgets.numericInputWidget = function numericInputWidget(options) 
   return {
     // Called on the first instantsearch search
     init: function init(opts) {
+      console.log('init');
       var helper = opts.helper;
 
       if (helper.getNumericRefinement(attributeName, operator)) {
+        console.log('result', helper.getNumericRefinement(attributeName, operator));
         container.value = helper.getNumericRefinement(attributeName, operator)[0];
       }
 
       container.addEventListener('input', function () {
         var value = container.value;
-        if (value !== undefined) {
-          helper
-            .removeNumericRefinement(attributeName)
-            .addNumericRefinement(attributeName, operator, value)
-            .search();
+
+        helper.removeNumericRefinement(attributeName);
+        if (value !== undefined && value !== '') {
+          helper.addNumericRefinement(attributeName, operator, value);
         }
+        helper.search();
       });
     }
   };
