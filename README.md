@@ -1,7 +1,7 @@
 # algolia-instantsearch-widgets
 Some custom widgets to enhance Algolia UI
 
-## algolia-instantsearch-select.js
+## instantsearch-select.js
 
 ![Screenshot](/screenshot1.jpg?raw=true)
 
@@ -26,7 +26,7 @@ search.addWidget(
 );
 ```
 
-## algolia-instantsearch-googlemaps.js
+## instantsearch-googlemaps.js
 
 ![Screenshot](/screenshot2.jpg?raw=true)
 
@@ -45,6 +45,29 @@ var search = instantsearch({
 search.addWidget(
   instantsearch.widgets.mapWidget({
     container: '#map'
+  })
+);
+```
+
+## instantsearch-numeric-input.js
+
+### Introduction
+An Algolia numeric input widget. An input on which you can create any numeric filter (operators allowed: <, <=, =, >=, >)
+
+### usage
+
+```
+var search = instantsearch({
+    appId: 'XXXXXXXXXXX',
+    apiKey: 'YYYYYYYYYY',
+    indexName: 'youIndexName'
+});
+
+search.addWidget(
+  instantsearch.widgets.numericInputWidget({
+    container: '#price',
+    attributeName: 'price',
+    operator: '<='
   })
 );
 ```
