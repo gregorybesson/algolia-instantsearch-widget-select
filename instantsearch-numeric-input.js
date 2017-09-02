@@ -10,6 +10,10 @@ instantsearch.widgets.numericInputWidget = function numericInputWidget(options) 
     init: function init(opts) {
       var helper = opts.helper;
 
+      if (helper.getNumericRefinement(attributeName, operator)) {
+        container.value = helper.getNumericRefinement(attributeName, operator)[0];
+      }
+
       container.addEventListener('input', function () {
         var value = container.value;
         if (value !== undefined) {
