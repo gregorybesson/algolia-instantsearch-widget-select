@@ -71,3 +71,24 @@ search.addWidget(
   })
 );
 ```
+You can also create array of numeric inputs for the same attribute (ie. min & max limits):
+
+```
+search.addWidget(
+  instantsearch.widgets.numericInputWidget(
+    [
+      {
+        container: '#surfaceMin',
+        attributeName: 'surfaceTotale',
+        operator: '>='
+      },
+      {
+        container: '#surfaceMax',
+        attributeName: 'surfaceTotale',
+        operator: '<='
+      }
+    ]
+  )
+);
+```
+
