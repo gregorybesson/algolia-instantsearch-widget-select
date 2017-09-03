@@ -1,29 +1,34 @@
 instantsearch.widgets.numericInputWidget = function numericInputWidget(options) {
-  var container = options.container;
-  var attributeName = options.attributeName;
-  var operator = options.operator;
+  var optionsArray = options;
 
-  container = document.querySelector(container);
+  if (!Array.isArray(options)) {
+    optionsArray = [options];
+  }
 
   return {
     // Called on the first instantsearch search
     init: function init(opts) {
-      console.log('init');
       var helper = opts.helper;
 
-      if (helper.getNumericRefinement(attributeName, operator)) {
-        console.log('result', helper.getNumericRefinement(attributeName, operator));
-        container.value = helper.getNumericRefinement(attributeName, operator)[0];
-      }
+      optionsArray.forEach(function (elt) {
+        var container = elt.container;
+        var attributeName = elt.attributeName;
+        var operator = elt.operator;
 
-      container.addEventListener('input', function () {
-        var value = container.value;
-
-        helper.removeNumericRefinement(attributeName);
-        if (value !== undefined && value !== '') {
-          helper.addNumericRefinement(attributeName, operator, value);
+        container = document.querySelector(container);
+        if (helper.getNumericRefinement(attributeName, operator)) {
+          container.value = helper.getNumericRefinement(attributeName, operator)[0];
         }
-        helper.search();
+
+        container.addEventListener('input', function () {
+          var value = container.value;
+
+          helper.removeNumericRefinement(attributeName, operator);
+          if (value !== undefined && value !== '') {
+            helper.addNumericRefinement(attributeName, operator, value);
+          }
+          helper.search();
+        });
       });
     }
   };
